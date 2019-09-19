@@ -1,0 +1,105 @@
+﻿@model EventApplication.Models.EventViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+
+@if (Model != null)
+{
+    <h2>Event Details</h2>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
+
+            @if (Model.DurationInHours != 0)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.DurationInHours)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DurationInHours)
+                </dd>
+            }
+
+            @if (Model.Description != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+            }
+
+            @if (Model.OtherDetails != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.OtherDetails)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OtherDetails)
+                </dd>
+            }
+
+            @if (Model.TotalInvites != 0)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalInvites)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalInvites)
+                </dd>
+            }
+
+        </dl>
+    </div>
+    <hr />
+   if(User.Identity.IsAuthenticated)
+    {
+        Html.RenderAction("CreateComment", "Comment");
+    }
+
+    Html.RenderAction("GetComments", "Comment");
+}
+else
+{
+    <div>
+        <h3>No event selected</h3>
+    </div>
+}
+

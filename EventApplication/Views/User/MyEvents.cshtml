@@ -1,0 +1,72 @@
+﻿@model IEnumerable<EventApplication.Models.EventViewModel>
+
+@{
+    ViewBag.Title = "MyEvents";
+
+}
+
+<h2>My Events</h2>
+
+<p>
+    @Html.ActionLink("Create New Event", "CreateEvent")
+</p>
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalInvites)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Title, "EventDetail", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalInvites)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @if (DateTime.Now < item.Date)
+                    {
+                        @Html.ActionLink("Edit", "EditEvent", new { id = item.Id }); <span> |</span>
+                    }
+                    @Html.ActionLink("Details", "EventDetail", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "DeleteEvent", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <div>
+        <h3>No Events Created</h3>
+    </div>
+}
+

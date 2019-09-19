@@ -1,0 +1,24 @@
+﻿<br />
+<div class="container">
+    <br />
+    <div style="background-color: aquamarine" class="jumbotron jumbotron-fluid">
+        <div class="container text-center">
+            <h1>Book Reading Events App</h1>
+            <p>Have Fun Reading.... </p>
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            @{Html.RenderAction("UserUpcomingEvent");
+            }
+        </div>
+
+        <div class="col-md-6">
+            @{Html.RenderAction("UserPastEvent");
+            }
+        </div>
+    </div>
+
+</div>

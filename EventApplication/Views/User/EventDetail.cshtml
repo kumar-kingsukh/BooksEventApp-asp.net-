@@ -1,0 +1,123 @@
+﻿@model EventApplication.Models.EventViewModel
+
+@{
+    ViewBag.Title = "EventDetail";
+}
+
+
+@if (Model != null)
+{
+    <h2>Event Detail</h2>
+    <br />
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+
+            @if (Model.StartTime != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.StartTime)
+                </dd>
+            }
+
+
+            @if (Model.DurationInHours != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.DurationInHours)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DurationInHours)
+                </dd>
+            }
+
+            @if (Model.Description != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+            }
+
+            @if (Model.OtherDetails != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.OtherDetails)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OtherDetails)
+                </dd>
+            }
+
+
+
+            @if (Model.TotalInvites != 0)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalInvites)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalInvites)
+                </dd>
+            }
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+
+        </dl>
+    </div>
+
+    Html.RenderAction("CreateComment", "Comment");
+
+    <hr />
+
+   Html.RenderAction("GetComments", "Comment", new { eventId = Model.Id });
+
+}
+else
+{
+    <div>
+        <h3>No event selected</h3>
+    </div>
+}
+
+
