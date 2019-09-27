@@ -57,7 +57,7 @@
                     }
                     <ul class="nav navbar-nav navbar-right">
 
-                        <li>@Html.ActionLink("welcome "+User.Identity.Name.Split('|')[0], "")</li>
+                        <li>@Html.ActionLink("welcome " + User.Identity.Name.Split('|')[0], "")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
 
                     </ul>
@@ -80,7 +80,8 @@
             <p><a href="http://helpdesk.nagarro.com ">HelpDesk</a></p>
         </footer>
     </div>
-
+    @Scripts.Render("~/Scripts/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

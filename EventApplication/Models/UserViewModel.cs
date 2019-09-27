@@ -10,19 +10,21 @@ namespace EventApplication.Models
     {
         public int? Id { get; set; }
 
+        
         [Display(Name = "Name")]
         [StringLength(20, ErrorMessage =
             "Name should be less than or equal to 20 characters.")]
         public string FullName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Email Id is required")]
         [Display(Name = "Email Id")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "Email is not valid.")]
         [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$",
                     ErrorMessage = "Email is not valid.")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password is required")]
+        [RegularExpression("^((?=.*?[A-Za-z0-9])(?=.*?[#?!@$%^&*-])).{5,}$", 
+         ErrorMessage = "Password must be atleast 5 char long and contains a special character")]
         [Display(Name = "Password")]
         public string Password { get; set; }
 

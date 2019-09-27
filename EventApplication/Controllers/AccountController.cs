@@ -47,7 +47,7 @@ namespace EventApplication.Controllers
 
                 return RedirectToAction("LoginUser");
             }
-            ModelState.Clear();
+            
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace EventApplication.Controllers
 
 
         [HttpPost]
-        public ActionResult LoginUser(UserDataModel model)
+        public ActionResult LoginUser(UserViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -76,8 +76,13 @@ namespace EventApplication.Controllers
                     FormsAuthentication.SetAuthCookie(result.FullName + "|" + result.Id + "|" + result.Role, false);
                     return RedirectToAction("Index", "User");
                 }
+
+                if (result == null)
+                {
+                    ModelState.AddModelError("", " Wrong email or password...");
+                }
             }
-            ModelState.AddModelError("", " Wrong email or password...");
+          
             return View();
 
         }
